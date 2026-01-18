@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #f4f6f9;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    background: #212529;
+    color: white;
+    transition: 0.3s ease;
+    z-index: 1050;
+}
+.sidebar.show {
+    left: 0;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1040;
+}
+#overlay.show {
+    display: block;
+}
+
+/* Content */
+.content {
+    transition: margin-left 0.3s ease;
+    margin-left: 0;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .sidebar {
+        left: 0;
+    }
+    #overlay {
+        display: none !important;
+    }
+    .content {
+        margin-left: 260px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<div class="sidebar p-3" id="sidebar">
+    <h4 class="text-center mb-4">🛠 Admin Panel</h4>
+    <ul class="nav nav-pills flex-column gap-2">
+        <li class="nav-item"><a class="nav-link active" href="#"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-people"></i> Manage Students</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-person-workspace"></i> Manage Teachers</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-book"></i> Manage Subjects</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-building"></i> Manage Classes</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-bar-chart"></i> View Results</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#"><i class="bi bi-gear"></i> Settings</a></li>
+        <li class="nav-item mt-3"><a class="nav-link text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+</div>
+
+<!-- Main -->
+<div class="content">
+
+<nav class="navbar navbar-light bg-white shadow-sm px-3">
+    <button class="btn btn-dark d-md-none" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+    <span class="navbar-brand ms-2 fw-semibold">Admin Dashboard</span>
+</nav>
+
+<div class="container-fluid p-4">
+    <h3 class="mb-4">Welcome, Admin 👋</h3>
+
+    <div class="row g-4">
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-people fs-1 text-primary"></i>
+                    <h5 class="mt-2">Students</h5>
+                    <p class="text-muted">Manage all students</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-person-workspace fs-1 text-success"></i>
+                    <h5 class="mt-2">Teachers</h5>
+                    <p class="text-muted">Manage all teachers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-book fs-1 text-warning"></i>
+                    <h5 class="mt-2">Subjects</h5>
+                    <p class="text-muted">Manage subjects</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-bar-chart fs-1 text-danger"></i>
+                    <h5 class="mt-2">Results</h5>
+                    <p class="text-muted">View performance</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+    document.getElementById("overlay").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>

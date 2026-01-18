@@ -24,7 +24,8 @@ SECRET_KEY = 'django-insecure-lgganmah^+eq$=5afqo^x65e(usgoc44rwh3m)u$au46apr#@&
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+##    https://student-management-system-2-opbs.onrender.com/
+##    https://student-management-system-1-xx86.onrender.com/
 ALLOWED_HOSTS = ["*"]
 
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "adminapp"
 ]
 
 MIDDLEWARE = [
