@@ -26,6 +26,12 @@ body {
     <h3 class="text-center fw-bold mb-3">👨‍💼 Admin Login</h3>
     <p class="text-center text-muted mb-4">Login to manage the system</p>
 
+    {% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
+
     <form method="post" action="{% url 'admin_login' %}">
         {% csrf_token %}
         <div class="mb-3">

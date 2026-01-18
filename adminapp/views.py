@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Admin, Contact
+from django.contrib import messages
     
 def home(request):
     return render(request, 'home.html')
@@ -10,10 +11,14 @@ def admin_login(request):
         password = request.POST.get('password')
         if Admin.objects.filter(username=username, password=password).exists():
             return redirect('admin_dashboard')
+        else:
+            return render(request, 'Admin/admin_login.html', {'message': 'Invalid username or password'})    
     return render(request, 'Admin/admin_login.html')
 
 def admin_dashboard(request):
     return render(request, 'Admin/admin_dashboard.html')
+def logout(request):
+    return redirect('admin_login')
 
 def contact_us(request):
     if request.method == 'POST':
