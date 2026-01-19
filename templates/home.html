@@ -40,12 +40,25 @@
     border-radius: 50%;
     font-size: 30px;
 }
+.nav-link {
+    color: white !important;
+    margin-right: 15px;
+}
+.nav-login {
+    color: #ffc107 !important;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #ffc107;
+    padding: 5px 12px;
+    background-color: transparent;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #212529;">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" style="background: #212529; padding: 15px 20px ;">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">🎓 SMS</a>
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
@@ -54,11 +67,11 @@
 
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item"><a class="btn btn-light ms-lg-3" href="#">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>&nbsp;&nbsp;&nbsp;
+        <li class="nav-item"><a class="nav-login" href="{% url 'admin_login' %}">Admin login</a></li>
       </ul>
     </div>
   </div>
@@ -72,8 +85,8 @@
       Manage students, teachers, subjects and results in one powerful platform.
     </p>
     <div class="mt-4">
-      <a href="#" class="btn btn-light btn-lg me-2">Student Login</a>
-      <a href="#" class="btn btn-outline-light btn-lg">Teacher Login</a>
+      <a href="{% url 'student_login' %}" class="btn btn-light btn-lg me-2">Student Login</a> &nbsp;&nbsp;
+      <a href="{% url 'teacher_login' %}" class="btn btn-outline-light btn-lg">Teacher Login</a>
     </div>
   </div>
 </section>

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-lgganmah^+eq$=5afqo^x65e(usgoc44rwh3m)u$au46apr#@&
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+# DEBUG = True
 ##    https://student-management-system-2-opbs.onrender.com/
 ##    https://student-management-system-1-xx86.onrender.com/
 ALLOWED_HOSTS = ["*"]
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "adminapp"
+    "adminapp",
+    "teacherapp",
+    "studentapp",
 ]
 
 MIDDLEWARE = [

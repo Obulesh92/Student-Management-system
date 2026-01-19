@@ -1,0 +1,58 @@
+{% extends 'Student/base.html' %}
+{% block content %}
+<!-- Top navbar -->
+<nav class="navbar navbar-light bg-white shadow-sm px-3">
+    <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+    <span class="navbar-brand ms-2 fw-semibold">Student Dashboard</span>
+</nav>
+
+<!-- Page body -->
+<div class="container-fluid p-4">
+    <h3 class="mb-4">Welcome,{{student.name}} 👋</h3>
+    <div class="row g-4">
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-book fs-1 text-primary"></i>
+                    <h5 class="mt-2">My Subjects</h5>
+                    <p class="text-muted">View your enrolled subjects</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-bar-chart fs-1 text-success"></i>
+                    <h5 class="mt-2">My Results</h5>
+                    <p class="text-muted">Check marks & grades</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6" >
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-person fs-1 text-warning"></i>
+                    <h5 class="mt-2"><a href="{% url 'student_profile' %}">My Profile</a></h5>
+                    <p class="text-muted">View personal details</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card shadow-sm border-0 text-center h-100">
+                <div class="card-body">
+                    <i class="bi bi-key fs-1 text-danger"></i>
+                    <h5 class="mt-2">Change Password</h5>
+                    <p class="text-muted">Update account password</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

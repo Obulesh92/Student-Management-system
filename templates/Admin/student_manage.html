@@ -1,0 +1,238 @@
+{% extends 'Admin/base.html' %}
+{% block content %}
+
+<style>
+/* General container spacing */
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Page header responsive fix */
+@media (max-width: 576px) {
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch !important;
+    }
+
+    .d-flex.justify-content-between h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .d-flex.justify-content-between button {
+        width: 100%;
+    }
+}
+
+/* Search box */
+.card .form-control {
+    font-size: 0.95rem;
+    padding: 10px;
+}
+
+/* Table responsiveness */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table th, 
+.table td {
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+/* Action buttons spacing */
+.table td .btn {
+    margin: 2px;
+}
+
+/* Modal responsiveness */
+.modal-dialog {
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 95%;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .modal-title {
+        font-size: 1rem;
+    }
+}
+
+/* Form fields better mobile spacing */
+.form-label {
+    font-size: 0.9rem;
+}
+
+.form-control {
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Cards on small devices */
+@media (max-width: 576px) {
+    .card {
+        border-radius: 10px;
+    }
+
+    .table thead {
+        font-size: 0.85rem;
+    }
+
+    .table tbody {
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+
+<div class="container py-5">
+
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold">👨‍🎓 Manage Students</h3>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+      <i class="bi bi-plus-circle"></i> Add Student
+    </button>
+  </div>
+
+  <!-- Search -->
+  <div class="card shadow-sm border-0 mb-3">
+    <div class="card-body">
+      <input type="text" class="form-control" placeholder="Search by name, roll no, class...">
+    </div>
+  </div>
+
+  <!-- Students Table -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{student.rollno}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.branch}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.password}}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-info text-white" ><i class="bi bi-eye"></i></button>
+              <button class="btn btn-sm btn-warning text-white" ><a href="{% url 'edit_student' student.id %}"><i class="bi bi-pencil"></i></a></button>
+              <button class="btn btn-sm btn-danger" ><a href="{% url 'delete_student' student.id %}"><i class="bi bi-trash"></i></a>   </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal fade" id="addStudentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Add New Student</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="post" action="{% url 'add_student'  %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row g-3">
+
+          <div class="col-md-6">
+              <label class="form-label">Upload your image</label>
+              <input type="file" name="image" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="name" class="form-control" placeholder="Enter full name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Create password">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Roll Number</label>
+              <input type="text" name="rollno" class="form-control" placeholder="Enter roll number" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Course</label>
+              <input type="text" name="course" class="form-control" placeholder="BTECH,MBBS">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Branch</label>
+              <input type="text" name="branch" class="form-control" placeholder="Enter branch " required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Year</label>
+              <input type="text" name="year" class="form-control" placeholder="1year,2year,..">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="Enter email">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input type="text" name="phone" class="form-control" placeholder="Enter phone number">
+            </div>
+
+            
+            <div class="col-md-6">
+            <label class="form-label">Gender</label>
+            <select name="gender" class="form-select">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Date of Birth</label>
+              <input type="date" name="dob" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+            <label class="form-label">Address</label>
+            <textarea name="address" class="form-control" rows="3"></textarea>
+          </div>
+
+
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-4 w-100">Save Student</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
